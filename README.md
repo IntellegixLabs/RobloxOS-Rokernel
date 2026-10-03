@@ -2,7 +2,6 @@
 
 RobloxOS is a desktop-style operating environment built inside a Roblox experience. It provides a sign-in and desktop flow, app windows and shortcuts, a taskbar, a command-line interface, a client-side kernel runtime, and an optional package catalog.
 
-This guide documents the **RobloxOS-Established** place (place ID `79375439303168`) as inspected in Roblox Studio on 2026-10-03. RobloxOS is an independent project and is not an official Roblox product. This folder contains documentation only; it is not the Roblox place source.
 
 ## Contents
 
@@ -279,6 +278,18 @@ Boot configs can assign arguments to a package or run a virtual filesystem file 
 ```text
 /pkg/hello-app --bootstrap config args[]: --greeting "Hello"
 ```
+
+Other way to perform boot arguments are through Command Code:
+```lua
+local storage = game:GetService("ServerStorage")
+local args = storage:FindFirstChild("RoKernelBootArguments") or Instance.new("StringValue")
+args.Name = "RoKernelBootArguments"
+args.Value = "--no-datastore"
+args.Parent = storage
+```
+
+for right now there is only one boot argument, and thats `no datastore`.
+
 
 The package receives its arguments as the third argument to `mount(window, host, bootstrapArguments)`. Save the virtual file as a boot config with `bootconfig save <name> <virtual-file>`, then activate it using `bootconfig use <name>`. Boot config files that contain Luau are compiled and executed at startup; only use code you wrote or reviewed.
 
