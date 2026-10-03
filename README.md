@@ -263,6 +263,9 @@ Install only packages you trust. Use `upacman info <id>` and `rokernel scan <id>
 
 ## Persistence and boot configuration
 
+
+# The datastore argument is pretty much depreciated since i realised that it DOES boot but however won't recover past data without datastore so the --no-datastore bootargument is pretty much useless
+
 `RoKernelPackageService` stores per-player installed-package state, boot configs, and saved system profiles in the `RoKernelProfilesV1` DataStore when DataStore access is available. Studio boot arguments can disable DataStore use with `--no-datastore` or `datastore=false`; in that case relevant changes are session-only. The CLI's `bootargs` command reports the runtime's view of these settings.
 
 System profiles save installed optional packages, theme, layout, and virtual filesystem entries. For example:
